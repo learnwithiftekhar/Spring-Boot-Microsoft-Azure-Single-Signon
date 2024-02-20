@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:th="https://www.thymeleaf.org" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Microsoft Social Login Demo</title>
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+</head>
+<body>
+
+    <h1>Hello <span th:text="${user.name}"></span></h1>
+
+    <br>
+
+<h2>User info:</h2>
+    <a th:href="@{/logout}" role="button">Logout</a>
+
+<table>
+    <thead>
+        <td>Attribute</td>
+        <td>Value</td>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Name</td>
+            <td th:text="${user.name}"></td>
+        </tr>
+
+        <tr>
+            <td>Class</td>
+            <td th:text="${user.principal.class}"></td>
+        </tr>
+
+        <tr>
+            <td>isAuthenticated</td>
+            <td th:text="${user.authenticated}"></td>
+        </tr>
+
+        <tr>
+            <td>Client Registration Id</td>
+            <td th:text="${user.authorizedClientRegistrationId}"></td>
+        </tr>
+
+        <tr th:each="ga: ${user.authorities}">
+
+            <td>Granted Authority: <span th:text="${ga.class.simpleName}"></span></td>
+            <td th:text="${ga.authority}"></td>
+
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
